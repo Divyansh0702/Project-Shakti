@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shakti Admin Panel</title>
+    <link rel="stylesheet" href="/admin/style.css" />
+  </head>
+  <body>
+    <div class="bg">
+      <div class="blob blob1"></div>
+      <div class="blob blob2"></div>
+      <div class="blob blob3"></div>
+    </div>
+    <main class="container">
+      <header class="header">
+        <h1>Admin Dashboard</h1>
+        <div class="admin-key">
+          <input id="adminKey" type="password" placeholder="Admin Key" />
+          <button id="saveKey">Save</button>
+        </div>
+      </header>
+
+      <section class="tabs">
+        <button class="tab active" data-tab="drivers">Drivers</button>
+        <button class="tab" data-tab="customers">Customers</button>
+      </section>
+
+      <section id="drivers" class="panel glass active">
+        <div class="panel-header">
+          <h2>Drivers</h2>
+          <div style="display:flex; gap:12px; align-items:center;">
+            <input id="driverSearch" type="text" placeholder="Search" />
+            <button id="refreshDrivers">Refresh</button>
+          </div>
+        </div>
+        <div id="driversList" class="list"></div>
+      </section>
+
+      <section id="customers" class="panel glass">
+        <div class="panel-header">
+          <h2>Customers</h2>
+          <div style="display:flex; gap:12px; align-items:center;">
+            <input id="customerSearch" type="text" placeholder="Search" />
+            <button id="refreshCustomers">Refresh</button>
+          </div>
+        </div>
+        <div id="customersList" class="list"></div>
+      </section>
+    </main>
+
+    <script src="/admin/app.js"></script>
+  </body>
+ </html>
