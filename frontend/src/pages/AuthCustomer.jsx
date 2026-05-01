@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import api from '../shared/api'
 import CameraCapture from '../components/CameraCapture'
-// Firebase authentication removed
 
 export default function AuthCustomer() {
   const navigate = useNavigate()
@@ -19,7 +18,6 @@ export default function AuthCustomer() {
   const [photo, setPhoto] = useState(null)
 
   useEffect(() => {
-    // Reset selfie and stage when switching modes
     setPhoto(null)
     setStage('form')
   }, [mode])
@@ -73,15 +71,12 @@ export default function AuthCustomer() {
         return
       }
 
-      // Register flow without Firebase Phone OTP
       if (mode === 'register' && stage === 'form') {
-        // Create user record (with optional selfie photo)
         const fd = new FormData()
         Object.entries(form).forEach(([k,v])=> fd.append(k, v))
         if (photo) fd.append('photo', photo, 'selfie.jpg')
-        // Let the browser set the correct multipart boundary automatically
         await api.post('/auth/customer/register', fd)
-        // Immediately login after successful register
+
         const login = await api.post('/auth/customer/login', { email: form.email, password: form.password })
         localStorage.setItem('token', login.data.token)
         localStorage.setItem('role', 'customer')
@@ -91,7 +86,7 @@ export default function AuthCustomer() {
         navigate('/customer/dashboard')
         return
       }
-      // No OTP stage
+
     } catch (err) {
       alert(err?.response?.data?.message || err?.message || 'Something went wrong')
     } finally {
