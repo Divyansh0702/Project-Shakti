@@ -9,7 +9,6 @@ const Customer = require('../models/Customer')
 const Driver = require('../models/Driver')
 const authMw = require('../middleware/auth')
 
-// ----- Upload storage setup (licenses + profile photos) -----
 const uploadsRoot = path.join(__dirname, '../../uploads')
 const licensesDir = path.join(uploadsRoot, 'driver-licenses')
 const photosDir = path.join(uploadsRoot, 'profile-photos')
@@ -37,11 +36,6 @@ const maybeUploadPhoto = (req, res, next) => {
   }
   next()
 }
-
-// Firebase phone/OTP verification removed. No OTP helpers required.
-
-// Minimal stub endpoints to satisfy frontend during development.
-// Replace with real authentication (JWT/password hashing) when ready.
 
 router.post('/login', (req, res) => {
   const { role = 'customer', name = 'User' } = req.body || {}
